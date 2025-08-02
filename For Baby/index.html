@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you say yes? 💖</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ffccff, #ccffff);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  img {
+    max-width: 200px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .buttons {
+    display: flex;
+    gap: 20px;
+  }
+
+  button {
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #66ccff;
+    color: white;
+    transition: all 0.2s ease;
+  }
+
+  button:hover {
+    background: #3399ff;
+  }
+
+  #noBtn {
+    position: relative;
+  }
+
+  /* Hide new message & image by default */
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <h1 id="question">Bati na po tayo please? 🥺</h1>
+  <img id="cuteImage" src="cat.jpg" alt="Cute photo">
+  
+  <div class="buttons" id="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+
+  <!-- Hidden message & new image -->
+  <div id="loveMessage" class="hidden">
+    <h1>I love youuu babyyy yeeyy! ❤️🥰</h1>
+    <h1>I'm really sorry po talaga, I will try my best na bumawi ^-^'</h1>
+    <img src="happy-cat-yippee-cat.gif" alt="I love you image">
+  </div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+  const buttonsDiv = document.getElementById('buttons');
+  const loveMessage = document.getElementById('loveMessage');
+  const question = document.getElementById('question');
+  const cuteImage = document.getElementById('cuteImage');
+
+  function moveButton() {
+    const x = window.innerWidth - noBtn.offsetWidth;
+    const y = window.innerHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * x;
+    const randomY = Math.random() * y;
+
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = `${randomX}px`;
+    noBtn.style.top = `${randomY}px`;
+  }
+
+  noBtn.addEventListener('mouseenter', moveButton); // desktop
+  noBtn.addEventListener('touchstart', moveButton); // mobile
+  noBtn.addEventListener('click', moveButton); // extra safety
+
+  yesBtn.addEventListener('click', () => {
+    // Hide question, buttons & old image
+    question.classList.add('hidden');
+    buttonsDiv.classList.add('hidden');
+    cuteImage.classList.add('hidden');
+
+    // Show love message & new image
+    loveMessage.classList.remove('hidden');
+  });
+</script>
+</body>
+</html>
